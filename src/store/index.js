@@ -1,4 +1,4 @@
-import { createStore } from "redux";
+/* import { createStore } from "redux";
 
 const counterReducer = (state = { counter: 0, show: true }, action) => {
   if (action.type === "increment") {
@@ -31,4 +31,15 @@ const counterReducer = (state = { counter: 0, show: true }, action) => {
 
 const store = createStore(counterReducer);
 
+export default store;
+ */
+
+import { configureStore } from "@reduxjs/toolkit";
+import counterReducer from "../components/CounterSlice";
+
+const store = configureStore({
+  reducer: {
+    counter: counterReducer,
+  },
+});
 export default store;
