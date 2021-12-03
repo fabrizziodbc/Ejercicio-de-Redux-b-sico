@@ -28,11 +28,20 @@ export const counterSlice = createSlice({
 
 export const { increment, decrement, reset, show } = counterSlice.actions;
 
+export function fetchCount(amount = 1) {
+  return new Promise((resolve) =>
+    setTimeout(() => resolve({ data: amount }), 500)
+  );
+}
+
+export const asyncIncrement = (value) => {
+  return async (dispatch) => {
+    const amount = await fetchCount(value);
+    dispatch(increment(Number(amount.data)));
+  };
+};
+
 export const selectCount = (state) => state.counter.value;
 export const isShow = (state) => state.counter.show;
 
 export default counterSlice.reducer;
-
-// The function below is called a selector and allows us to select a value from
-// the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`

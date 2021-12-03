@@ -7,6 +7,7 @@ import {
   show,
   selectCount,
   isShow,
+  asyncIncrement,
 } from "./CounterSlice";
 import classes from "../features/counter/Counter.module.css";
 
@@ -25,6 +26,7 @@ const Counter = () => {
         <button onClick={() => dispatch(reset())}>Reset</button>
         <button onClick={() => dispatch(show())}>Toggle</button>
         <button onClick={() => dispatch(increment(5))}>Increment +5 </button>
+        <button onClick={() => dispatch(asyncIncrement())}>Async </button>
       </div>
     </main>
   );
