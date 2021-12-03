@@ -1,31 +1,35 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   value: 0,
-  status: 'idle',
+  status: "idle",
+  show: true,
 };
 
 export const counterSlice = createSlice({
-  name: 'counter',
+  name: "counter",
   initialState,
-  
+
   reducers: {
-    increment: (state) => {
-      state.value += 1;
+    increment: (state, action) => {
+      state.value += action.payload || 1;
     },
     decrement: (state) => {
       state.value -= 1;
     },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload;
+    reset: (state) => {
+      state.value = 0;
+    },
+    show: (state) => {
+      state.show = !state.show;
     },
   },
 });
 
-export const { increment, decrement, incrementByAmount } = counterSlice.actions;
-
+export const { increment, decrement, reset, show } = counterSlice.actions;
 
 export const selectCount = (state) => state.counter.value;
+export const isShow = (state) => state.counter.show;
 
 export default counterSlice.reducer;
 

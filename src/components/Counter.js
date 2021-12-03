@@ -1,28 +1,30 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  decrement,
   increment,
-  incrementByAmount,
+  decrement,
+  reset,
+  show,
   selectCount,
+  isShow,
 } from "./CounterSlice";
 import classes from "../features/counter/Counter.module.css";
 
 const Counter = () => {
   const count = useSelector(selectCount);
+  const showHide = useSelector(isShow);
   const dispatch = useDispatch();
-  const incrementValue = 5;
 
   return (
     <main className={classes.counter}>
       <h1>Redux Counter</h1>
-      <div className={classes.value}>{count}</div>
+      {showHide && <div className={classes.value}>{count}</div>}
       <div>
         <button onClick={() => dispatch(increment())}>Increment</button>
         <button onClick={() => dispatch(decrement())}>Decrement</button>
-        <button onClick={() => dispatch(incrementByAmount(incrementValue))}>
-          Increment +5{" "}
-        </button>
+        <button onClick={() => dispatch(reset())}>Reset</button>
+        <button onClick={() => dispatch(show())}>Toggle</button>
+        <button onClick={() => dispatch(increment(5))}>Increment +5 </button>
       </div>
     </main>
   );
