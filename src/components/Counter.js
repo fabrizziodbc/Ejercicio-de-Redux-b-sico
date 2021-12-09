@@ -19,7 +19,7 @@ const Counter = () => {
   return (
     <main className={classes.counter}>
       <h1>Redux Counter</h1>
-      {showHide && <div className={classes.value}>{count}</div>}
+      {showHide && <div className={classes.value} data-testid="currentValue">{count}</div>}
       <div>
         <button onClick={() => dispatch(increment())}>Increment</button>
         <button onClick={() => dispatch(decrement())}>Decrement</button>
